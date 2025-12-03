@@ -26,6 +26,8 @@ use tool_wsdiscovery\fixtures\helper_testing;
  * @category  test
  * @copyright 2025 Marina Glancy
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ *
+ * @runTestsInSeparateProcesses
  */
 final class helper_test extends \advanced_testcase {
     /**
