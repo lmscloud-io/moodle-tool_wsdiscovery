@@ -59,11 +59,17 @@ class helper {
         }
 
         $wsmanager = new \webservice();
-        $authenticationinfo = $wsmanager->authenticate_user($wstoken);
+        try {
+            $authenticationinfo = $wsmanager->authenticate_user($wstoken);
+        } catch (\moodle_exception $ex) {
+            $this->output_error($ex, 401);
+            return;
+        }
         $user = $authenticationinfo['user'];
         $protocols = $this->get_available_protocols($user);
         if (empty($protocols)) {
-            throw new \moodle_exception('noprotocols', 'tool_wsdiscovery');
+            $this->output_error(new \moodle_exception('noprotocols', 'tool_wsdiscovery'), 403);
+            return;
         }
         $service = $authenticationinfo['service'];
         $functions = $wsmanager->get_external_functions([$service->id => $service->id]);
@@ -159,7 +165,6 @@ class helper {
      * Get the webservice authorization token from the request.
      * Throws error and notifies caller on failure.
      *
-     * @param array $headers The extracted HTTP headers.
      * @return string|null $wstoken The extracted webservice authorization token.
      */
     protected function get_wstoken() {

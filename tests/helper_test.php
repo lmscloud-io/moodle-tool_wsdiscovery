@@ -35,6 +35,7 @@ final class helper_test extends \advanced_testcase {
      */
     protected function setUp(): void {
         global $CFG;
+        parent::setUp();
         require_once($CFG->dirroot . '/admin/tool/wsdiscovery/tests/fixtures/helper_testing.php');
     }
 
