@@ -58,7 +58,7 @@ final class helper_test extends \advanced_testcase {
 
         $data = json_decode($output, true);
         $this->assertEquals(['rest'], $data['protocols']);
-        $this->assertEquals(1, count($data['functions']));
+        $this->assertEquals(2, count($data['functions']));
         $function = reset($data['functions']);
         $this->assertEquals('core_course_get_contents', $function['name']);
         $this->assertEquals(
@@ -103,10 +103,13 @@ final class helper_test extends \advanced_testcase {
         $externaltoken->timecreated = time();
         $DB->insert_record('external_tokens', $externaltoken);
 
-        // Add a function to the service.
+        // Add two functions to the service that contain variety of parameter types.
         $wsmethod = new \stdClass();
         $wsmethod->externalserviceid = $externalserviceid;
         $wsmethod->functionname = 'core_course_get_contents';
+        $DB->insert_record('external_services_functions', $wsmethod);
+
+        $wsmethod->functionname = 'core_course_get_courses';
         $DB->insert_record('external_services_functions', $wsmethod);
     }
 

@@ -40,32 +40,45 @@ class wsfunction {
     }
 
     /**
+     * Some post-processing for preparing input/output parameters for export
+     *
+     * @param mixed $value
+     * @param mixed $rv
+     */
+    protected function post_process_value($value, &$rv) {
+        if ($value instanceof \external_value && $value->type == PARAM_INT
+            && $value->default >= time() - 1 && $value->default <= time()) {
+            // Avoid including current time as default value, it will be outdated after 1 second...
+            $rv['default'] = 0;
+        }
+        if ($value instanceof \external_value && $value->type == PARAM_LANG) {
+            $rv['enum'] = array_keys(get_string_manager()->get_list_of_translations());
+        }
+        if ($value instanceof \external_value && $value->type == PARAM_THEME) {
+            $rv['enum'] = array_keys(\core_component::get_plugin_list('theme'));
+        }
+    }
+
+    /**
      * Prepares the value to be json-encoded (recursive method)
      *
      * @param mixed $value
-     * @param string|null $key
-     * @param mixed $parent
-     * @return mixed
+     * @return array|string|float|bool
      */
-    protected function prepare_value($value, $key = null, $parent = null) {
+    protected function prepare_value($value) {
         if ($value instanceof \external_description || is_array($value) || is_object($value)) {
             $rv = [];
             if ($value instanceof \external_description) {
                 $rv['class'] = join(',', self::class_name(get_class($value)));
             }
             foreach ($value as $k => $v) {
-                $rv[$k] = self::prepare_value($v, $k, $value);
+                $rv[$k] = self::prepare_value($v);
             }
-            return $rv;
         } else {
-            if ($parent instanceof \external_value) {
-                if ($parent->type == PARAM_INT && $value >= time() - 1 && $value <= time() && $key == "default") {
-                    // Avoid including current time as default value, it will be outdated after 1 second...
-                    return 0;
-                }
-            }
-            return $value;
+            $rv = $value;
         }
+        $this->post_process_value($value, $rv);
+        return $rv;
     }
 
     /**
