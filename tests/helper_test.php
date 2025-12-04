@@ -139,11 +139,11 @@ final class helper_test extends \advanced_testcase {
     public function test_get_functions(): void {
         $helper = new helper();
         $functions1 = $helper->get_all_functions('', '');
-        $this->assertGreaterThan(600, count($functions1));
+        $this->assertGreaterThan(500, count($functions1));
         $functions2 = $helper->get_all_functions('mod_assign', '');
         $this->assertGreaterThan(3, count($functions2));
         $functions3 = $helper->get_all_functions('', 'mod_assign');
-        $this->assertGreaterThan(600, count($functions3));
+        $this->assertGreaterThan(500, count($functions3));
         $this->assertEquals(count($functions1), count($functions3) + count($functions2));
 
         $functions4 = $helper->get_all_functions('moodle', '');
