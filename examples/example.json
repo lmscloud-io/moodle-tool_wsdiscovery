@@ -80,7 +80,7 @@
                                     "allownull": true,
                                     "desc": "cohort visible",
                                     "required": 2,
-                                    "default": true
+                                    "default": null
                                 },
                                 "theme": {
                                     "class": "external_value",

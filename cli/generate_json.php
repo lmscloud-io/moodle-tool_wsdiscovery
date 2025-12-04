@@ -92,7 +92,7 @@ if ($options['group-by-component']) {
         }
         $grouped[$component]['functions'][] = $function;
     }
-    echo json_encode(['components' => $grouped], JSON_PRETTY_PRINT) . "\n";
+    echo json_encode(['components' => $grouped]);
 } else {
-    echo json_encode(['functions' => $functions], JSON_PRETTY_PRINT) . "\n";
+    echo json_encode(['functions' => $functions]);
 }

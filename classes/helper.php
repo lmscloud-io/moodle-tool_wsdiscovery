@@ -17,7 +17,7 @@
 namespace tool_wsdiscovery;
 
 /**
- * Class helper
+ * Helper methods for the Web service discovery tool
  *
  * @package   tool_wsdiscovery
  * @copyright 2025 Marina Glancy
@@ -80,7 +80,7 @@ class helper {
         echo json_encode([
             'protocols' => $protocols,
             'functions' => $res,
-        ], JSON_PRETTY_PRINT) . "\n";
+        ]);
     }
 
     /**
