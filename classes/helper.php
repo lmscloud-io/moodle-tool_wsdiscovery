@@ -215,18 +215,19 @@ class helper {
     /**
      * Version of a particular component (same logic as in 'core_webservice_get_site_info' WS function)
      *
-     * @param string|null $component
+     * @param string $component
+     * @return float|null
      */
     public function get_component_version($component) {
         global $CFG;
         if ($component == 'moodle' || $component == 'core') {
-            return $CFG->version; // Moodle version.
+            return (float)$CFG->version; // Moodle version.
         } else {
             $versionpath = \core_component::get_component_directory($component) . '/version.php';
             if (is_readable($versionpath)) {
                 $plugin = new \stdClass();
                 include($versionpath);
-                return "" . $plugin->version;
+                return $plugin->version;
             }
         }
         return null;

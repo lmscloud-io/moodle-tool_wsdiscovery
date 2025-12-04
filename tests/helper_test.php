@@ -159,15 +159,19 @@ final class helper_test extends \advanced_testcase {
         $helper = new helper();
 
         $version = $helper->get_component_version('mod_forum');
-        $this->assertTrue((bool)preg_match('/^20\d{8}$/', $version));
+        $this->assertTrue(is_int($version));
+        $this->assertGreaterThan(2020000000, $version);
+        $this->assertLessThan(2040000000, $version);
 
         $version = $helper->get_component_version('moodle');
-        $this->assertTrue((bool)preg_match('/^20\d{8}\.\d\d$/', $version));
+        $this->assertTrue(is_float($version));
+        $this->assertGreaterThan(2020000000, $version);
+        $this->assertLessThan(2040000000, $version);
 
         $version = $helper->get_component_version('non_existing_component_xyz');
         $this->assertNull($version);
 
         $version = $helper->get_component_version('tool_wsdiscovery');
-        $this->assertEquals((string)get_config('tool_wsdiscovery', 'version'), $version);
+        $this->assertEquals((string)get_config('tool_wsdiscovery', 'version'), (string)$version);
     }
 }
