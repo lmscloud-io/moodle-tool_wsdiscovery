@@ -127,4 +127,47 @@ final class helper_test extends \advanced_testcase {
             true
         );
     }
+
+    public function test_get_standard_plugins(): void {
+        $helper = new helper();
+        $standardplugins = $helper->get_standard_plugins();
+        $this->assertGreaterThan(200, count($standardplugins));
+        $this->assertTrue(in_array('mod_forum', $standardplugins));
+        $this->assertFalse(in_array('tool_wsdiscovery', $standardplugins));
+    }
+
+    public function test_get_functions(): void {
+        $helper = new helper();
+        $functions1 = $helper->get_all_functions('', '');
+        $this->assertGreaterThan(600, count($functions1));
+        $functions2 = $helper->get_all_functions('mod_assign', '');
+        $this->assertGreaterThan(3, count($functions2));
+        $functions3 = $helper->get_all_functions('', 'mod_assign');
+        $this->assertGreaterThan(600, count($functions3));
+        $this->assertEquals(count($functions1), count($functions3) + count($functions2));
+
+        $functions4 = $helper->get_all_functions('moodle', '');
+        $this->assertGreaterThan(100, count($functions4));
+        $this->assertLessThan(count($functions1), count($functions4));
+
+        $functions5 = $helper->get_all_functions('core,mod_assign', '');
+        $this->assertGreaterThan(100, count($functions5));
+        $this->assertEquals(count($functions5), count($functions2) + count($functions4));
+    }
+
+    public function test_get_component_version(): void {
+        $helper = new helper();
+
+        $version = $helper->get_component_version('mod_forum');
+        $this->assertTrue((bool)preg_match('/^20\d{8}$/', $version));
+
+        $version = $helper->get_component_version('moodle');
+        $this->assertTrue((bool)preg_match('/^20\d{8}\.\d\d$/', $version));
+
+        $version = $helper->get_component_version('non_existing_component_xyz');
+        $this->assertNull($version);
+
+        $version = $helper->get_component_version('tool_wsdiscovery');
+        $this->assertEquals((string)get_config('tool_wsdiscovery', 'version'), $version);
+    }
 }

@@ -184,4 +184,91 @@ class helper {
 
         return $wstoken;
     }
+
+    /** @var string[]|null Cached list of standard plugins. */
+    private $standardplugins = null;
+
+    /**
+     * Returns list of all standard plugins in the system.
+     *
+     * @return string[]
+     */
+    public function get_standard_plugins() {
+        if ($this->standardplugins !== null) {
+            return $this->standardplugins;
+        }
+
+        $this->standardplugins = [];
+        if (class_exists('\core\plugin_manager')) {
+            $this->standardplugins = \core\plugin_manager::instance()->get_standard_plugins();
+        } else {
+            foreach (\core_plugin_manager::instance()->get_plugin_types() as $type => $unused) {
+                $list = \core_plugin_manager::standard_plugins_list($type) ?: [];
+                foreach ($list as $pluginname) {
+                    $this->standardplugins[] = $type . '_' . $pluginname;
+                }
+            }
+        }
+        return $this->standardplugins;
+    }
+
+    /**
+     * Version of a particular component (same logic as in 'core_webservice_get_site_info' WS function)
+     *
+     * @param string|null $component
+     */
+    public function get_component_version($component) {
+        global $CFG;
+        if ($component == 'moodle' || $component == 'core') {
+            return $CFG->version; // Moodle version.
+        } else {
+            $versionpath = \core_component::get_component_directory($component) . '/version.php';
+            if (is_readable($versionpath)) {
+                $plugin = new \stdClass();
+                include($versionpath);
+                return "" . $plugin->version;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Helper method to check if a component is in the provided list
+     *
+     * @param string $component
+     * @param array $pluginlist
+     * @return bool
+     */
+    protected function is_component_in_list(string $component, array $pluginlist) {
+        if ($component == 'moodle' || $component == 'core') {
+            return in_array('moodle', $pluginlist) || in_array('core', $pluginlist);
+        }
+        return in_array($component, $pluginlist) ||
+            (in_array('standard', $pluginlist) && in_array($component, $this->get_standard_plugins())) ||
+            (in_array('addons', $pluginlist) && !in_array($component, $this->get_standard_plugins()));
+    }
+
+    /**
+     * Returns list of all WS functions that satisfy include/exclude criteria. See cli/generate_json.php for usage.
+     *
+     * @param string $include
+     * @param string $exclude
+     * @return array[]
+     */
+    public function get_all_functions($include, $exclude) {
+        global $DB;
+        $include = preg_split('/\s*,\s*/', trim($include), -1, PREG_SPLIT_NO_EMPTY);
+        $exclude = preg_split('/\s*,\s*/', trim($exclude), -1, PREG_SPLIT_NO_EMPTY);
+
+        $records = $DB->get_records('external_functions', [], 'component, name');
+        $records = array_filter($records, function ($record) use ($include, $exclude) {
+            return ((empty($include) || $this->is_component_in_list($record->component, $include))
+                    && !$this->is_component_in_list($record->component, $exclude));
+        });
+        $res = [];
+        foreach ($records as $record) {
+            $res[] = (new wsfunction($record))->to_array();
+        }
+        return $res;
+    }
 }

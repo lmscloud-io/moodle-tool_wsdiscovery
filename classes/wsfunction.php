@@ -16,6 +16,8 @@
 
 namespace tool_wsdiscovery;
 
+use core\exception\coding_exception;
+
 /**
  * Processes information about a web service function
  *
@@ -46,8 +48,10 @@ class wsfunction {
      * @param mixed $rv
      */
     protected function post_process_value($value, &$rv) {
-        if ($value instanceof \external_value && $value->type == PARAM_INT
-            && $value->default >= time() - 1 && $value->default <= time()) {
+        if (
+            $value instanceof \external_value && $value->type == PARAM_INT
+            && $value->default >= time() - 1 && $value->default <= time()
+        ) {
             // Avoid including current time as default value, it will be outdated after 1 second...
             $rv['default'] = 0;
         }
@@ -70,6 +74,11 @@ class wsfunction {
             $rv = [];
             if ($value instanceof \external_description) {
                 $rv['class'] = join(',', self::class_name(get_class($value)));
+                if ($value->required != VALUE_DEFAULT) {
+                    // Remove occasional mess in WS definitions that is not picked up by core because core ignores
+                    // the property default unless the value should have a default.
+                    $value->default = null;
+                }
             }
             foreach ($value as $k => $v) {
                 $rv[$k] = self::prepare_value($v);
