@@ -26,8 +26,10 @@ use core\exception\coding_exception;
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class wsfunction {
+    /** @var \stdClass web service function record from external_functions table */
+    public $functionrecord;
     /** @var \stdClass web service function information (including the parameters/returns objects)  */
-    protected $function;
+    public $function;
 
     /**
      * Constructor
@@ -37,6 +39,7 @@ class wsfunction {
      */
     public function __construct(\stdClass $functionrecord) {
         global $CFG;
+        $this->functionrecord = $functionrecord;
         require_once($CFG->dirroot . '/lib/externallib.php');
         $this->function = \external_api::external_function_info($functionrecord);
     }
@@ -78,6 +81,12 @@ class wsfunction {
                     // Remove occasional mess in WS definitions that is not picked up by core because core ignores
                     // the property default unless the value should have a default.
                     $value->default = null;
+                }
+                $orderedkeys = ['desc', 'required', 'default', 'allownull', 'type', 'content', 'keys'];
+                $orderedkeys = array_intersect($orderedkeys, array_keys(get_object_vars($value)));
+                foreach ($orderedkeys as $k) {
+                    // Avoid different order of keys in different versions of Moodle/php.
+                    $rv[$k] = null;
                 }
             }
             foreach ($value as $k => $v) {
