@@ -267,7 +267,7 @@ class helper {
                     && !$this->is_component_in_list($record->component, $exclude));
         });
         // Sort again with PHP, db sorting may give different results on different db engines.
-        usort($records, function($a, $b) {
+        usort($records, function ($a, $b) {
             $cmp = strcmp($a->component, $b->component);
             return $cmp !== 0 ? $cmp : strcmp($a->name, $b->name);
         });
