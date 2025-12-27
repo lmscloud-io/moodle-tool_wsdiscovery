@@ -15,27 +15,23 @@
                 "desc": "",
                 "required": 1,
                 "default": null,
-                "allownull": false,
                 "keys": {
                     "cohorts": {
                         "class": "external_multiple_structure",
                         "desc": "",
                         "required": 1,
                         "default": null,
-                        "allownull": false,
                         "content": {
                             "class": "external_single_structure",
                             "desc": "",
                             "required": 1,
                             "default": null,
-                            "allownull": false,
                             "keys": {
                                 "categorytype": {
                                     "class": "external_single_structure",
                                     "desc": "",
                                     "required": 1,
                                     "default": null,
-                                    "allownull": false,
                                     "keys": {
                                         "type": {
                                             "class": "external_value",
@@ -81,7 +77,7 @@
                                 },
                                 "descriptionformat": {
                                     "class": "external_format_value,external_value",
-                                    "desc": "description format (1 = HTML, 0 = MOODLE, 2 = PLAIN, or 4 = MARKDOWN)",
+                                    "desc": "description format (1 = HTML, 0 = MOODLE, 2 = PLAIN or 4 = MARKDOWN)",
                                     "required": 0,
                                     "default": "1",
                                     "allownull": true,
@@ -106,38 +102,6 @@
                                         "boost",
                                         "classic"
                                     ]
-                                },
-                                "customfields": {
-                                    "class": "external_multiple_structure",
-                                    "desc": "Custom fields for the cohort",
-                                    "required": 2,
-                                    "default": null,
-                                    "allownull": false,
-                                    "content": {
-                                        "class": "external_single_structure",
-                                        "desc": "",
-                                        "required": 1,
-                                        "default": null,
-                                        "allownull": false,
-                                        "keys": {
-                                            "shortname": {
-                                                "class": "external_value",
-                                                "desc": "The shortname of the custom field",
-                                                "required": 1,
-                                                "default": null,
-                                                "allownull": true,
-                                                "type": "alphanumext"
-                                            },
-                                            "value": {
-                                                "class": "external_value",
-                                                "desc": "The value of the custom field",
-                                                "required": 1,
-                                                "default": null,
-                                                "allownull": true,
-                                                "type": "raw"
-                                            }
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -149,13 +113,11 @@
                 "desc": "",
                 "required": 1,
                 "default": null,
-                "allownull": false,
                 "content": {
                     "class": "external_single_structure",
                     "desc": "",
                     "required": 1,
                     "default": null,
-                    "allownull": false,
                     "keys": {
                         "id": {
                             "class": "external_value",
@@ -191,7 +153,7 @@
                         },
                         "descriptionformat": {
                             "class": "external_format_value,external_value",
-                            "desc": "description format (1 = HTML, 0 = MOODLE, 2 = PLAIN, or 4 = MARKDOWN)",
+                            "desc": "description format (1 = HTML, 0 = MOODLE, 2 = PLAIN or 4 = MARKDOWN)",
                             "required": 1,
                             "default": null,
                             "allownull": true,
@@ -236,7 +198,6 @@
                 "desc": "",
                 "required": 1,
                 "default": null,
-                "allownull": false,
                 "keys": {
                     "stringid": {
                         "class": "external_value",
@@ -270,13 +231,11 @@
                         "desc": "the definition of a string param (i.e. {$a->name})",
                         "required": 0,
                         "default": [],
-                        "allownull": false,
                         "content": {
                             "class": "external_single_structure",
                             "desc": "",
                             "required": 1,
                             "default": null,
-                            "allownull": false,
                             "keys": {
                                 "name": {
                                     "class": "external_value",
@@ -323,14 +282,12 @@
                 "desc": "",
                 "required": 1,
                 "default": null,
-                "allownull": false,
                 "keys": {
                     "courseids": {
                         "class": "external_multiple_structure",
                         "desc": "0 or more course ids",
                         "required": 0,
                         "default": [],
-                        "allownull": false,
                         "content": {
                             "class": "external_value",
                             "desc": "course id, empty for retrieving all the courses where the user is enroled in",
@@ -345,7 +302,6 @@
                         "desc": "list of capabilities used to filter courses",
                         "required": 0,
                         "default": [],
-                        "allownull": false,
                         "content": {
                             "class": "external_value",
                             "desc": "capability",
@@ -370,20 +326,17 @@
                 "desc": "",
                 "required": 1,
                 "default": null,
-                "allownull": false,
                 "keys": {
                     "courses": {
                         "class": "external_multiple_structure",
                         "desc": "list of courses",
                         "required": 1,
                         "default": null,
-                        "allownull": false,
                         "content": {
                             "class": "external_single_structure",
                             "desc": "course information object",
                             "required": 1,
                             "default": null,
-                            "allownull": false,
                             "keys": {
                                 "id": {
                                     "class": "external_value",
@@ -422,13 +375,11 @@
                                     "desc": "assignment info",
                                     "required": 1,
                                     "default": null,
-                                    "allownull": false,
                                     "content": {
                                         "class": "external_single_structure",
                                         "desc": "assignment information object",
                                         "required": 1,
                                         "default": null,
-                                        "allownull": false,
                                         "keys": {
                                             "id": {
                                                 "class": "external_value",
@@ -521,14 +472,6 @@
                                             "grade": {
                                                 "class": "external_value",
                                                 "desc": "grade type",
-                                                "required": 1,
-                                                "default": null,
-                                                "allownull": true,
-                                                "type": "int"
-                                            },
-                                            "gradepenalty": {
-                                                "class": "external_value",
-                                                "desc": "if enabled, penalty will be applied to late submissions",
                                                 "required": 1,
                                                 "default": null,
                                                 "allownull": true,
@@ -646,14 +589,6 @@
                                                 "allownull": true,
                                                 "type": "int"
                                             },
-                                            "markinganonymous": {
-                                                "class": "external_value",
-                                                "desc": "enable marking anonymous",
-                                                "required": 1,
-                                                "default": null,
-                                                "allownull": true,
-                                                "type": "int"
-                                            },
                                             "requiresubmissionstatement": {
                                                 "class": "external_value",
                                                 "desc": "student must accept submission statement",
@@ -680,7 +615,7 @@
                                             },
                                             "submissionstatementformat": {
                                                 "class": "external_format_value,external_value",
-                                                "desc": "submissionstatement format (1 = HTML, 0 = MOODLE, 2 = PLAIN, or 4 = MARKDOWN)",
+                                                "desc": "submissionstatement format (1 = HTML, 0 = MOODLE, 2 = PLAIN or 4 = MARKDOWN)",
                                                 "required": 2,
                                                 "default": null,
                                                 "allownull": true,
@@ -691,13 +626,11 @@
                                                 "desc": "configuration settings",
                                                 "required": 1,
                                                 "default": null,
-                                                "allownull": false,
                                                 "content": {
                                                     "class": "external_single_structure",
                                                     "desc": "assignment configuration object",
                                                     "required": 1,
                                                     "default": null,
-                                                    "allownull": false,
                                                     "keys": {
                                                         "id": {
                                                             "class": "external_value",
@@ -760,7 +693,7 @@
                                             },
                                             "introformat": {
                                                 "class": "external_format_value,external_value",
-                                                "desc": "intro format (1 = HTML, 0 = MOODLE, 2 = PLAIN, or 4 = MARKDOWN)",
+                                                "desc": "intro format (1 = HTML, 0 = MOODLE, 2 = PLAIN or 4 = MARKDOWN)",
                                                 "required": 2,
                                                 "default": null,
                                                 "allownull": true,
@@ -771,13 +704,11 @@
                                                 "desc": "Files in the introduction text",
                                                 "required": 2,
                                                 "default": null,
-                                                "allownull": false,
                                                 "content": {
                                                     "class": "external_single_structure",
                                                     "desc": "File.",
                                                     "required": 1,
                                                     "default": null,
-                                                    "allownull": false,
                                                     "keys": {
                                                         "filename": {
                                                             "class": "external_value",
@@ -842,14 +773,6 @@
                                                             "default": null,
                                                             "allownull": true,
                                                             "type": "plugin"
-                                                        },
-                                                        "icon": {
-                                                            "class": "external_value",
-                                                            "desc": "The relative path to the relevant file type icon based on the file's mime type.",
-                                                            "required": 2,
-                                                            "default": null,
-                                                            "allownull": true,
-                                                            "type": "raw"
                                                         }
                                                     }
                                                 }
@@ -859,13 +782,11 @@
                                                 "desc": "intro attachments files",
                                                 "required": 2,
                                                 "default": null,
-                                                "allownull": false,
                                                 "content": {
                                                     "class": "external_single_structure",
                                                     "desc": "File.",
                                                     "required": 1,
                                                     "default": null,
-                                                    "allownull": false,
                                                     "keys": {
                                                         "filename": {
                                                             "class": "external_value",
@@ -930,137 +851,9 @@
                                                             "default": null,
                                                             "allownull": true,
                                                             "type": "plugin"
-                                                        },
-                                                        "icon": {
-                                                            "class": "external_value",
-                                                            "desc": "The relative path to the relevant file type icon based on the file's mime type.",
-                                                            "required": 2,
-                                                            "default": null,
-                                                            "allownull": true,
-                                                            "type": "raw"
                                                         }
                                                     }
                                                 }
-                                            },
-                                            "activity": {
-                                                "class": "external_value",
-                                                "desc": "Description of activity",
-                                                "required": 2,
-                                                "default": null,
-                                                "allownull": true,
-                                                "type": "raw"
-                                            },
-                                            "activityformat": {
-                                                "class": "external_format_value,external_value",
-                                                "desc": "activity format (1 = HTML, 0 = MOODLE, 2 = PLAIN, or 4 = MARKDOWN)",
-                                                "required": 2,
-                                                "default": null,
-                                                "allownull": true,
-                                                "type": "int"
-                                            },
-                                            "activityattachments": {
-                                                "class": "external_files,external_multiple_structure",
-                                                "desc": "Files from activity field",
-                                                "required": 2,
-                                                "default": null,
-                                                "allownull": false,
-                                                "content": {
-                                                    "class": "external_single_structure",
-                                                    "desc": "File.",
-                                                    "required": 1,
-                                                    "default": null,
-                                                    "allownull": false,
-                                                    "keys": {
-                                                        "filename": {
-                                                            "class": "external_value",
-                                                            "desc": "File name.",
-                                                            "required": 2,
-                                                            "default": null,
-                                                            "allownull": true,
-                                                            "type": "file"
-                                                        },
-                                                        "filepath": {
-                                                            "class": "external_value",
-                                                            "desc": "File path.",
-                                                            "required": 2,
-                                                            "default": null,
-                                                            "allownull": true,
-                                                            "type": "path"
-                                                        },
-                                                        "filesize": {
-                                                            "class": "external_value",
-                                                            "desc": "File size.",
-                                                            "required": 2,
-                                                            "default": null,
-                                                            "allownull": true,
-                                                            "type": "int"
-                                                        },
-                                                        "fileurl": {
-                                                            "class": "external_value",
-                                                            "desc": "Downloadable file url.",
-                                                            "required": 2,
-                                                            "default": null,
-                                                            "allownull": true,
-                                                            "type": "url"
-                                                        },
-                                                        "timemodified": {
-                                                            "class": "external_value",
-                                                            "desc": "Time modified.",
-                                                            "required": 2,
-                                                            "default": null,
-                                                            "allownull": true,
-                                                            "type": "int"
-                                                        },
-                                                        "mimetype": {
-                                                            "class": "external_value",
-                                                            "desc": "File mime type.",
-                                                            "required": 2,
-                                                            "default": null,
-                                                            "allownull": true,
-                                                            "type": "raw"
-                                                        },
-                                                        "isexternalfile": {
-                                                            "class": "external_value",
-                                                            "desc": "Whether is an external file.",
-                                                            "required": 2,
-                                                            "default": null,
-                                                            "allownull": true,
-                                                            "type": "bool"
-                                                        },
-                                                        "repositorytype": {
-                                                            "class": "external_value",
-                                                            "desc": "The repository type for external files.",
-                                                            "required": 2,
-                                                            "default": null,
-                                                            "allownull": true,
-                                                            "type": "plugin"
-                                                        },
-                                                        "icon": {
-                                                            "class": "external_value",
-                                                            "desc": "The relative path to the relevant file type icon based on the file's mime type.",
-                                                            "required": 2,
-                                                            "default": null,
-                                                            "allownull": true,
-                                                            "type": "raw"
-                                                        }
-                                                    }
-                                                }
-                                            },
-                                            "timelimit": {
-                                                "class": "external_value",
-                                                "desc": "Time limit to complete assigment",
-                                                "required": 2,
-                                                "default": null,
-                                                "allownull": true,
-                                                "type": "int"
-                                            },
-                                            "submissionattachments": {
-                                                "class": "external_value",
-                                                "desc": "Flag to only show files during submission",
-                                                "required": 2,
-                                                "default": null,
-                                                "allownull": true,
-                                                "type": "int"
                                             }
                                         }
                                     }
@@ -1073,13 +866,11 @@
                         "desc": "list of warnings",
                         "required": 2,
                         "default": null,
-                        "allownull": false,
                         "content": {
                             "class": "external_single_structure",
                             "desc": "warning",
                             "required": 1,
                             "default": null,
-                            "allownull": false,
                             "keys": {
                                 "item": {
                                     "class": "external_value",
@@ -1111,7 +902,7 @@
                                     "required": 1,
                                     "default": null,
                                     "allownull": true,
-                                    "type": "raw"
+                                    "type": "text"
                                 }
                             }
                         }
