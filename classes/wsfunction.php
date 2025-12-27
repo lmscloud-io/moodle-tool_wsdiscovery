@@ -37,6 +37,7 @@ class wsfunction {
      * Constructor
      *
      * @param \stdClass $functionrecord record from the database table external_functions
+     * @param bool $sitespecific whether to include site-specific details (like list of languages, themes)
      * @throws \coding_exception
      */
     public function __construct(\stdClass $functionrecord, bool $sitespecific = true) {
