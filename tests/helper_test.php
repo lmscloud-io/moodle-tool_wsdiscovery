@@ -194,10 +194,10 @@ final class helper_test extends \advanced_testcase {
             $filename = 'example.json';
         } else if ($branch == 405) {
             $filename = 'example_405.json';
-        } else if ($branch <= 401) {
-            $filename = 'example_401.json';
+        } else if ($branch <= 311) {
+            $filename = 'example_311.json';
         } else {
-            // Skip for 4.2-4.4, there are some minor differences.
+            // Skip for 4.0-4.4, there are some minor differences.
             $this->markTestSkipped('No example available for this Moodle version.');
             return;
         }

@@ -526,6 +526,14 @@
                                                 "allownull": true,
                                                 "type": "int"
                                             },
+                                            "gradepenalty": {
+                                                "class": "external_value",
+                                                "desc": "if enabled, penalty will be applied to late submissions",
+                                                "required": 1,
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
+                                            },
                                             "timemodified": {
                                                 "class": "external_value",
                                                 "desc": "last time assignment was modified",
