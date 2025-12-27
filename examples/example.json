@@ -12,175 +12,213 @@
             "allowed_from_ajax": false,
             "parameters_desc": {
                 "class": "external_function_parameters,external_single_structure",
+                "desc": "",
+                "required": 1,
+                "default": null,
+                "allownull": false,
                 "keys": {
                     "cohorts": {
                         "class": "external_multiple_structure",
+                        "desc": "",
+                        "required": 1,
+                        "default": null,
+                        "allownull": false,
                         "content": {
                             "class": "external_single_structure",
+                            "desc": "",
+                            "required": 1,
+                            "default": null,
+                            "allownull": false,
                             "keys": {
                                 "categorytype": {
                                     "class": "external_single_structure",
+                                    "desc": "",
+                                    "required": 1,
+                                    "default": null,
+                                    "allownull": false,
                                     "keys": {
                                         "type": {
                                             "class": "external_value",
-                                            "type": "text",
-                                            "allownull": true,
                                             "desc": "the name of the field: id (numeric value\n                                        of course category id) or idnumber (alphanumeric value of idnumber course category)\n                                        or system (value ignored)",
                                             "required": 1,
-                                            "default": null
+                                            "default": null,
+                                            "allownull": true,
+                                            "type": "text"
                                         },
                                         "value": {
                                             "class": "external_value",
-                                            "type": "raw",
-                                            "allownull": true,
                                             "desc": "the value of the categorytype",
                                             "required": 1,
-                                            "default": null
+                                            "default": null,
+                                            "allownull": true,
+                                            "type": "raw"
                                         }
-                                    },
-                                    "desc": "",
-                                    "required": 1,
-                                    "default": null
+                                    }
                                 },
                                 "name": {
                                     "class": "external_value",
-                                    "type": "raw",
-                                    "allownull": true,
                                     "desc": "cohort name",
                                     "required": 1,
-                                    "default": null
+                                    "default": null,
+                                    "allownull": true,
+                                    "type": "raw"
                                 },
                                 "idnumber": {
                                     "class": "external_value",
-                                    "type": "raw",
-                                    "allownull": true,
                                     "desc": "cohort idnumber",
                                     "required": 1,
-                                    "default": null
+                                    "default": null,
+                                    "allownull": true,
+                                    "type": "raw"
                                 },
                                 "description": {
                                     "class": "external_value",
-                                    "type": "raw",
-                                    "allownull": true,
                                     "desc": "cohort description",
                                     "required": 2,
-                                    "default": null
+                                    "default": null,
+                                    "allownull": true,
+                                    "type": "raw"
                                 },
                                 "descriptionformat": {
                                     "class": "external_format_value,external_value",
-                                    "type": "int",
-                                    "allownull": true,
-                                    "desc": "description format (1 = HTML, 0 = MOODLE, 2 = PLAIN or 4 = MARKDOWN)",
+                                    "desc": "description format (1 = HTML, 0 = MOODLE, 2 = PLAIN, or 4 = MARKDOWN)",
                                     "required": 0,
-                                    "default": "1"
+                                    "default": "1",
+                                    "allownull": true,
+                                    "type": "int"
                                 },
                                 "visible": {
                                     "class": "external_value",
-                                    "type": "bool",
-                                    "allownull": true,
                                     "desc": "cohort visible",
                                     "required": 2,
-                                    "default": null
+                                    "default": null,
+                                    "allownull": true,
+                                    "type": "bool"
                                 },
                                 "theme": {
                                     "class": "external_value",
-                                    "type": "theme",
-                                    "allownull": true,
                                     "desc": "the cohort theme. The allowcohortthemes setting must be enabled on Moodle",
                                     "required": 2,
                                     "default": null,
+                                    "allownull": true,
+                                    "type": "theme",
                                     "enum": [
                                         "boost",
                                         "classic"
                                     ]
+                                },
+                                "customfields": {
+                                    "class": "external_multiple_structure",
+                                    "desc": "Custom fields for the cohort",
+                                    "required": 2,
+                                    "default": null,
+                                    "allownull": false,
+                                    "content": {
+                                        "class": "external_single_structure",
+                                        "desc": "",
+                                        "required": 1,
+                                        "default": null,
+                                        "allownull": false,
+                                        "keys": {
+                                            "shortname": {
+                                                "class": "external_value",
+                                                "desc": "The shortname of the custom field",
+                                                "required": 1,
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "alphanumext"
+                                            },
+                                            "value": {
+                                                "class": "external_value",
+                                                "desc": "The value of the custom field",
+                                                "required": 1,
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "raw"
+                                            }
+                                        }
+                                    }
                                 }
-                            },
-                            "desc": "",
-                            "required": 1,
-                            "default": null
-                        },
-                        "desc": "",
-                        "required": 1,
-                        "default": null
+                            }
+                        }
                     }
-                },
-                "desc": "",
-                "required": 1,
-                "default": null
+                }
             },
             "returns_desc": {
                 "class": "external_multiple_structure",
+                "desc": "",
+                "required": 1,
+                "default": null,
+                "allownull": false,
                 "content": {
                     "class": "external_single_structure",
+                    "desc": "",
+                    "required": 1,
+                    "default": null,
+                    "allownull": false,
                     "keys": {
                         "id": {
                             "class": "external_value",
-                            "type": "int",
-                            "allownull": true,
                             "desc": "cohort id",
                             "required": 1,
-                            "default": null
+                            "default": null,
+                            "allownull": true,
+                            "type": "int"
                         },
                         "name": {
                             "class": "external_value",
-                            "type": "raw",
-                            "allownull": true,
                             "desc": "cohort name",
                             "required": 1,
-                            "default": null
+                            "default": null,
+                            "allownull": true,
+                            "type": "raw"
                         },
                         "idnumber": {
                             "class": "external_value",
-                            "type": "raw",
-                            "allownull": true,
                             "desc": "cohort idnumber",
                             "required": 1,
-                            "default": null
+                            "default": null,
+                            "allownull": true,
+                            "type": "raw"
                         },
                         "description": {
                             "class": "external_value",
-                            "type": "raw",
-                            "allownull": true,
                             "desc": "cohort description",
                             "required": 1,
-                            "default": null
+                            "default": null,
+                            "allownull": true,
+                            "type": "raw"
                         },
                         "descriptionformat": {
                             "class": "external_format_value,external_value",
-                            "type": "int",
-                            "allownull": true,
-                            "desc": "description format (1 = HTML, 0 = MOODLE, 2 = PLAIN or 4 = MARKDOWN)",
+                            "desc": "description format (1 = HTML, 0 = MOODLE, 2 = PLAIN, or 4 = MARKDOWN)",
                             "required": 1,
-                            "default": null
+                            "default": null,
+                            "allownull": true,
+                            "type": "int"
                         },
                         "visible": {
                             "class": "external_value",
-                            "type": "bool",
-                            "allownull": true,
                             "desc": "cohort visible",
                             "required": 1,
-                            "default": null
+                            "default": null,
+                            "allownull": true,
+                            "type": "bool"
                         },
                         "theme": {
                             "class": "external_value",
-                            "type": "theme",
-                            "allownull": true,
                             "desc": "cohort theme",
                             "required": 2,
                             "default": null,
+                            "allownull": true,
+                            "type": "theme",
                             "enum": [
                                 "boost",
                                 "classic"
                             ]
                         }
-                    },
-                    "desc": "",
-                    "required": 1,
-                    "default": null
-                },
-                "desc": "",
-                "required": 1,
-                "default": null
+                    }
+                }
             },
             "description": "Creates new cohorts.",
             "type": "write",
@@ -195,76 +233,79 @@
             "allowed_from_ajax": true,
             "parameters_desc": {
                 "class": "external_function_parameters,external_single_structure",
+                "desc": "",
+                "required": 1,
+                "default": null,
+                "allownull": false,
                 "keys": {
                     "stringid": {
                         "class": "external_value",
-                        "type": "stringid",
-                        "allownull": true,
                         "desc": "string identifier",
                         "required": 1,
-                        "default": null
+                        "default": null,
+                        "allownull": true,
+                        "type": "stringid"
                     },
                     "component": {
                         "class": "external_value",
-                        "type": "component",
-                        "allownull": true,
                         "desc": "component",
                         "required": 0,
-                        "default": "moodle"
+                        "default": "moodle",
+                        "allownull": true,
+                        "type": "component"
                     },
                     "lang": {
                         "class": "external_value",
-                        "type": "lang",
-                        "allownull": true,
                         "desc": "lang",
                         "required": 0,
                         "default": null,
+                        "allownull": true,
+                        "type": "lang",
                         "enum": [
                             "en"
                         ]
                     },
                     "stringparams": {
                         "class": "external_multiple_structure",
+                        "desc": "the definition of a string param (i.e. {$a->name})",
+                        "required": 0,
+                        "default": [],
+                        "allownull": false,
                         "content": {
                             "class": "external_single_structure",
+                            "desc": "",
+                            "required": 1,
+                            "default": null,
+                            "allownull": false,
                             "keys": {
                                 "name": {
                                     "class": "external_value",
-                                    "type": "alphanumext",
-                                    "allownull": true,
                                     "desc": "param name\n                            - if the string expect only one $a parameter then don't send this field, just send the value.",
                                     "required": 2,
-                                    "default": null
+                                    "default": null,
+                                    "allownull": true,
+                                    "type": "alphanumext"
                                 },
                                 "value": {
                                     "class": "external_value",
-                                    "type": "raw",
-                                    "allownull": true,
                                     "desc": "param value",
                                     "required": 1,
-                                    "default": null
+                                    "default": null,
+                                    "allownull": true,
+                                    "type": "raw"
                                 }
-                            },
-                            "desc": "",
-                            "required": 1,
-                            "default": null
-                        },
-                        "desc": "the definition of a string param (i.e. {$a->name})",
-                        "required": 0,
-                        "default": []
+                            }
+                        }
                     }
-                },
-                "desc": "",
-                "required": 1,
-                "default": null
+                }
             },
             "returns_desc": {
                 "class": "external_value",
-                "type": "raw",
-                "allownull": true,
                 "desc": "translated string",
                 "required": 1,
-                "default": null
+                "default": null,
+                "allownull": true,
+                "type": "raw"
             },
             "description": "Return a translated string - similar to core get_string(), call",
             "type": "read",
@@ -279,635 +320,795 @@
             "allowed_from_ajax": false,
             "parameters_desc": {
                 "class": "external_function_parameters,external_single_structure",
+                "desc": "",
+                "required": 1,
+                "default": null,
+                "allownull": false,
                 "keys": {
                     "courseids": {
                         "class": "external_multiple_structure",
-                        "content": {
-                            "class": "external_value",
-                            "type": "int",
-                            "allownull": true,
-                            "desc": "course id, empty for retrieving all the courses where the user is enroled in",
-                            "required": 1,
-                            "default": null
-                        },
                         "desc": "0 or more course ids",
                         "required": 0,
-                        "default": []
+                        "default": [],
+                        "allownull": false,
+                        "content": {
+                            "class": "external_value",
+                            "desc": "course id, empty for retrieving all the courses where the user is enroled in",
+                            "required": 1,
+                            "default": null,
+                            "allownull": true,
+                            "type": "int"
+                        }
                     },
                     "capabilities": {
                         "class": "external_multiple_structure",
-                        "content": {
-                            "class": "external_value",
-                            "type": "capability",
-                            "allownull": true,
-                            "desc": "capability",
-                            "required": 1,
-                            "default": null
-                        },
                         "desc": "list of capabilities used to filter courses",
                         "required": 0,
-                        "default": []
+                        "default": [],
+                        "allownull": false,
+                        "content": {
+                            "class": "external_value",
+                            "desc": "capability",
+                            "required": 1,
+                            "default": null,
+                            "allownull": true,
+                            "type": "capability"
+                        }
                     },
                     "includenotenrolledcourses": {
                         "class": "external_value",
-                        "type": "bool",
-                        "allownull": true,
                         "desc": "whether to return courses that the user can see\n                                                                    even if is not enroled in. This requires the parameter courseids\n                                                                    to not be empty.",
                         "required": 0,
-                        "default": false
+                        "default": false,
+                        "allownull": true,
+                        "type": "bool"
                     }
-                },
-                "desc": "",
-                "required": 1,
-                "default": null
+                }
             },
             "returns_desc": {
                 "class": "external_single_structure",
+                "desc": "",
+                "required": 1,
+                "default": null,
+                "allownull": false,
                 "keys": {
                     "courses": {
                         "class": "external_multiple_structure",
+                        "desc": "list of courses",
+                        "required": 1,
+                        "default": null,
+                        "allownull": false,
                         "content": {
                             "class": "external_single_structure",
+                            "desc": "course information object",
+                            "required": 1,
+                            "default": null,
+                            "allownull": false,
                             "keys": {
                                 "id": {
                                     "class": "external_value",
-                                    "type": "int",
-                                    "allownull": true,
                                     "desc": "course id",
                                     "required": 1,
-                                    "default": null
+                                    "default": null,
+                                    "allownull": true,
+                                    "type": "int"
                                 },
                                 "fullname": {
                                     "class": "external_value",
-                                    "type": "raw",
-                                    "allownull": true,
                                     "desc": "course full name",
                                     "required": 1,
-                                    "default": null
+                                    "default": null,
+                                    "allownull": true,
+                                    "type": "raw"
                                 },
                                 "shortname": {
                                     "class": "external_value",
-                                    "type": "raw",
-                                    "allownull": true,
                                     "desc": "course short name",
                                     "required": 1,
-                                    "default": null
+                                    "default": null,
+                                    "allownull": true,
+                                    "type": "raw"
                                 },
                                 "timemodified": {
                                     "class": "external_value",
-                                    "type": "int",
-                                    "allownull": true,
                                     "desc": "last time modified",
                                     "required": 1,
-                                    "default": null
+                                    "default": null,
+                                    "allownull": true,
+                                    "type": "int"
                                 },
                                 "assignments": {
                                     "class": "external_multiple_structure",
+                                    "desc": "assignment info",
+                                    "required": 1,
+                                    "default": null,
+                                    "allownull": false,
                                     "content": {
                                         "class": "external_single_structure",
+                                        "desc": "assignment information object",
+                                        "required": 1,
+                                        "default": null,
+                                        "allownull": false,
                                         "keys": {
                                             "id": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "assignment id",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "cmid": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "course module id",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "course": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "course id",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "name": {
                                                 "class": "external_value",
-                                                "type": "raw",
-                                                "allownull": true,
                                                 "desc": "assignment name",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "raw"
                                             },
                                             "nosubmissions": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "no submissions",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "submissiondrafts": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "submissions drafts",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "sendnotifications": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "send notifications",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "sendlatenotifications": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "send notifications",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "sendstudentnotifications": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "send student notifications (default)",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "duedate": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "assignment due date",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "allowsubmissionsfromdate": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "allow submissions from date",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "grade": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "grade type",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "timemodified": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "last time assignment was modified",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "completionsubmit": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "if enabled, set activity as complete following submission",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "cutoffdate": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "date after which submission is not accepted without an extension",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "gradingduedate": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "the expected date for marking the submissions",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "teamsubmission": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "if enabled, students submit as a team",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "requireallteammemberssubmit": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "if enabled, all team members must submit",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "teamsubmissiongroupingid": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "the grouping id for the team submission groups",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "blindmarking": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "if enabled, hide identities until reveal identities actioned",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "hidegrader": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "If enabled, hide grader to student",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "revealidentities": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "show identities for a blind marking assignment",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "attemptreopenmethod": {
                                                 "class": "external_value",
-                                                "type": "text",
-                                                "allownull": true,
                                                 "desc": "method used to control opening new attempts",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "text"
                                             },
                                             "maxattempts": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "maximum number of attempts allowed",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "markingworkflow": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "enable marking workflow",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "markingallocation": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "enable marking allocation",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
+                                            },
+                                            "markinganonymous": {
+                                                "class": "external_value",
+                                                "desc": "enable marking anonymous",
+                                                "required": 1,
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "requiresubmissionstatement": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "student must accept submission statement",
                                                 "required": 1,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "preventsubmissionnotingroup": {
                                                 "class": "external_value",
-                                                "type": "int",
-                                                "allownull": true,
                                                 "desc": "Prevent submission not in group",
                                                 "required": 2,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "submissionstatement": {
                                                 "class": "external_value",
-                                                "type": "raw",
-                                                "allownull": true,
                                                 "desc": "Submission statement formatted.",
                                                 "required": 2,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "raw"
                                             },
                                             "submissionstatementformat": {
                                                 "class": "external_format_value,external_value",
-                                                "type": "int",
-                                                "allownull": true,
-                                                "desc": "submissionstatement format (1 = HTML, 0 = MOODLE, 2 = PLAIN or 4 = MARKDOWN)",
+                                                "desc": "submissionstatement format (1 = HTML, 0 = MOODLE, 2 = PLAIN, or 4 = MARKDOWN)",
                                                 "required": 2,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "configs": {
                                                 "class": "external_multiple_structure",
+                                                "desc": "configuration settings",
+                                                "required": 1,
+                                                "default": null,
+                                                "allownull": false,
                                                 "content": {
                                                     "class": "external_single_structure",
+                                                    "desc": "assignment configuration object",
+                                                    "required": 1,
+                                                    "default": null,
+                                                    "allownull": false,
                                                     "keys": {
                                                         "id": {
                                                             "class": "external_value",
-                                                            "type": "int",
-                                                            "allownull": true,
                                                             "desc": "assign_plugin_config id",
                                                             "required": 2,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "int"
                                                         },
                                                         "assignment": {
                                                             "class": "external_value",
-                                                            "type": "int",
-                                                            "allownull": true,
                                                             "desc": "assignment id",
                                                             "required": 2,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "int"
                                                         },
                                                         "plugin": {
                                                             "class": "external_value",
-                                                            "type": "text",
-                                                            "allownull": true,
                                                             "desc": "plugin",
                                                             "required": 1,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "text"
                                                         },
                                                         "subtype": {
                                                             "class": "external_value",
-                                                            "type": "text",
-                                                            "allownull": true,
                                                             "desc": "subtype",
                                                             "required": 1,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "text"
                                                         },
                                                         "name": {
                                                             "class": "external_value",
-                                                            "type": "text",
-                                                            "allownull": true,
                                                             "desc": "name",
                                                             "required": 1,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "text"
                                                         },
                                                         "value": {
                                                             "class": "external_value",
-                                                            "type": "text",
-                                                            "allownull": true,
                                                             "desc": "value",
                                                             "required": 1,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "text"
                                                         }
-                                                    },
-                                                    "desc": "assignment configuration object",
-                                                    "required": 1,
-                                                    "default": null
-                                                },
-                                                "desc": "configuration settings",
-                                                "required": 1,
-                                                "default": null
+                                                    }
+                                                }
                                             },
                                             "intro": {
                                                 "class": "external_value",
-                                                "type": "raw",
-                                                "allownull": true,
                                                 "desc": "assignment intro, not allways returned because it deppends on the activity configuration",
                                                 "required": 2,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "raw"
                                             },
                                             "introformat": {
                                                 "class": "external_format_value,external_value",
-                                                "type": "int",
-                                                "allownull": true,
-                                                "desc": "intro format (1 = HTML, 0 = MOODLE, 2 = PLAIN or 4 = MARKDOWN)",
+                                                "desc": "intro format (1 = HTML, 0 = MOODLE, 2 = PLAIN, or 4 = MARKDOWN)",
                                                 "required": 2,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             },
                                             "introfiles": {
                                                 "class": "external_files,external_multiple_structure",
+                                                "desc": "Files in the introduction text",
+                                                "required": 2,
+                                                "default": null,
+                                                "allownull": false,
                                                 "content": {
                                                     "class": "external_single_structure",
+                                                    "desc": "File.",
+                                                    "required": 1,
+                                                    "default": null,
+                                                    "allownull": false,
                                                     "keys": {
                                                         "filename": {
                                                             "class": "external_value",
-                                                            "type": "file",
-                                                            "allownull": true,
                                                             "desc": "File name.",
                                                             "required": 2,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "file"
                                                         },
                                                         "filepath": {
                                                             "class": "external_value",
-                                                            "type": "path",
-                                                            "allownull": true,
                                                             "desc": "File path.",
                                                             "required": 2,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "path"
                                                         },
                                                         "filesize": {
                                                             "class": "external_value",
-                                                            "type": "int",
-                                                            "allownull": true,
                                                             "desc": "File size.",
                                                             "required": 2,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "int"
                                                         },
                                                         "fileurl": {
                                                             "class": "external_value",
-                                                            "type": "url",
-                                                            "allownull": true,
                                                             "desc": "Downloadable file url.",
                                                             "required": 2,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "url"
                                                         },
                                                         "timemodified": {
                                                             "class": "external_value",
-                                                            "type": "int",
-                                                            "allownull": true,
                                                             "desc": "Time modified.",
                                                             "required": 2,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "int"
                                                         },
                                                         "mimetype": {
                                                             "class": "external_value",
-                                                            "type": "raw",
-                                                            "allownull": true,
                                                             "desc": "File mime type.",
                                                             "required": 2,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "raw"
                                                         },
                                                         "isexternalfile": {
                                                             "class": "external_value",
-                                                            "type": "bool",
-                                                            "allownull": true,
                                                             "desc": "Whether is an external file.",
                                                             "required": 2,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "bool"
                                                         },
                                                         "repositorytype": {
                                                             "class": "external_value",
-                                                            "type": "plugin",
-                                                            "allownull": true,
                                                             "desc": "The repository type for external files.",
                                                             "required": 2,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "plugin"
+                                                        },
+                                                        "icon": {
+                                                            "class": "external_value",
+                                                            "desc": "The relative path to the relevant file type icon based on the file's mime type.",
+                                                            "required": 2,
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "raw"
                                                         }
-                                                    },
-                                                    "desc": "File.",
-                                                    "required": 1,
-                                                    "default": null
-                                                },
-                                                "desc": "Files in the introduction text",
-                                                "required": 2,
-                                                "default": null
+                                                    }
+                                                }
                                             },
                                             "introattachments": {
                                                 "class": "external_files,external_multiple_structure",
+                                                "desc": "intro attachments files",
+                                                "required": 2,
+                                                "default": null,
+                                                "allownull": false,
                                                 "content": {
                                                     "class": "external_single_structure",
+                                                    "desc": "File.",
+                                                    "required": 1,
+                                                    "default": null,
+                                                    "allownull": false,
                                                     "keys": {
                                                         "filename": {
                                                             "class": "external_value",
-                                                            "type": "file",
-                                                            "allownull": true,
                                                             "desc": "File name.",
                                                             "required": 2,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "file"
                                                         },
                                                         "filepath": {
                                                             "class": "external_value",
-                                                            "type": "path",
-                                                            "allownull": true,
                                                             "desc": "File path.",
                                                             "required": 2,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "path"
                                                         },
                                                         "filesize": {
                                                             "class": "external_value",
-                                                            "type": "int",
-                                                            "allownull": true,
                                                             "desc": "File size.",
                                                             "required": 2,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "int"
                                                         },
                                                         "fileurl": {
                                                             "class": "external_value",
-                                                            "type": "url",
-                                                            "allownull": true,
                                                             "desc": "Downloadable file url.",
                                                             "required": 2,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "url"
                                                         },
                                                         "timemodified": {
                                                             "class": "external_value",
-                                                            "type": "int",
-                                                            "allownull": true,
                                                             "desc": "Time modified.",
                                                             "required": 2,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "int"
                                                         },
                                                         "mimetype": {
                                                             "class": "external_value",
-                                                            "type": "raw",
-                                                            "allownull": true,
                                                             "desc": "File mime type.",
                                                             "required": 2,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "raw"
                                                         },
                                                         "isexternalfile": {
                                                             "class": "external_value",
-                                                            "type": "bool",
-                                                            "allownull": true,
                                                             "desc": "Whether is an external file.",
                                                             "required": 2,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "bool"
                                                         },
                                                         "repositorytype": {
                                                             "class": "external_value",
-                                                            "type": "plugin",
-                                                            "allownull": true,
                                                             "desc": "The repository type for external files.",
                                                             "required": 2,
-                                                            "default": null
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "plugin"
+                                                        },
+                                                        "icon": {
+                                                            "class": "external_value",
+                                                            "desc": "The relative path to the relevant file type icon based on the file's mime type.",
+                                                            "required": 2,
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "raw"
                                                         }
-                                                    },
+                                                    }
+                                                }
+                                            },
+                                            "activity": {
+                                                "class": "external_value",
+                                                "desc": "Description of activity",
+                                                "required": 2,
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "raw"
+                                            },
+                                            "activityformat": {
+                                                "class": "external_format_value,external_value",
+                                                "desc": "activity format (1 = HTML, 0 = MOODLE, 2 = PLAIN, or 4 = MARKDOWN)",
+                                                "required": 2,
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
+                                            },
+                                            "activityattachments": {
+                                                "class": "external_files,external_multiple_structure",
+                                                "desc": "Files from activity field",
+                                                "required": 2,
+                                                "default": null,
+                                                "allownull": false,
+                                                "content": {
+                                                    "class": "external_single_structure",
                                                     "desc": "File.",
                                                     "required": 1,
-                                                    "default": null
-                                                },
-                                                "desc": "intro attachments files",
+                                                    "default": null,
+                                                    "allownull": false,
+                                                    "keys": {
+                                                        "filename": {
+                                                            "class": "external_value",
+                                                            "desc": "File name.",
+                                                            "required": 2,
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "file"
+                                                        },
+                                                        "filepath": {
+                                                            "class": "external_value",
+                                                            "desc": "File path.",
+                                                            "required": 2,
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "path"
+                                                        },
+                                                        "filesize": {
+                                                            "class": "external_value",
+                                                            "desc": "File size.",
+                                                            "required": 2,
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "int"
+                                                        },
+                                                        "fileurl": {
+                                                            "class": "external_value",
+                                                            "desc": "Downloadable file url.",
+                                                            "required": 2,
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "url"
+                                                        },
+                                                        "timemodified": {
+                                                            "class": "external_value",
+                                                            "desc": "Time modified.",
+                                                            "required": 2,
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "int"
+                                                        },
+                                                        "mimetype": {
+                                                            "class": "external_value",
+                                                            "desc": "File mime type.",
+                                                            "required": 2,
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "raw"
+                                                        },
+                                                        "isexternalfile": {
+                                                            "class": "external_value",
+                                                            "desc": "Whether is an external file.",
+                                                            "required": 2,
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "bool"
+                                                        },
+                                                        "repositorytype": {
+                                                            "class": "external_value",
+                                                            "desc": "The repository type for external files.",
+                                                            "required": 2,
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "plugin"
+                                                        },
+                                                        "icon": {
+                                                            "class": "external_value",
+                                                            "desc": "The relative path to the relevant file type icon based on the file's mime type.",
+                                                            "required": 2,
+                                                            "default": null,
+                                                            "allownull": true,
+                                                            "type": "raw"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "timelimit": {
+                                                "class": "external_value",
+                                                "desc": "Time limit to complete assigment",
                                                 "required": 2,
-                                                "default": null
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
+                                            },
+                                            "submissionattachments": {
+                                                "class": "external_value",
+                                                "desc": "Flag to only show files during submission",
+                                                "required": 2,
+                                                "default": null,
+                                                "allownull": true,
+                                                "type": "int"
                                             }
-                                        },
-                                        "desc": "assignment information object",
-                                        "required": 1,
-                                        "default": null
-                                    },
-                                    "desc": "assignment info",
-                                    "required": 1,
-                                    "default": null
+                                        }
+                                    }
                                 }
-                            },
-                            "desc": "course information object",
-                            "required": 1,
-                            "default": null
-                        },
-                        "desc": "list of courses",
-                        "required": 1,
-                        "default": null
+                            }
+                        }
                     },
                     "warnings": {
                         "class": "external_warnings,external_multiple_structure",
+                        "desc": "list of warnings",
+                        "required": 2,
+                        "default": null,
+                        "allownull": false,
                         "content": {
                             "class": "external_single_structure",
+                            "desc": "warning",
+                            "required": 1,
+                            "default": null,
+                            "allownull": false,
                             "keys": {
                                 "item": {
                                     "class": "external_value",
-                                    "type": "text",
-                                    "allownull": true,
                                     "desc": "item can be 'course' (errorcode 1 or 2) or 'module' (errorcode 1)",
                                     "required": 2,
-                                    "default": null
+                                    "default": null,
+                                    "allownull": true,
+                                    "type": "text"
                                 },
                                 "itemid": {
                                     "class": "external_value",
-                                    "type": "int",
-                                    "allownull": true,
                                     "desc": "When item is a course then itemid is a course id. When the item is a module then itemid is a module id",
                                     "required": 2,
-                                    "default": null
+                                    "default": null,
+                                    "allownull": true,
+                                    "type": "int"
                                 },
                                 "warningcode": {
                                     "class": "external_value",
-                                    "type": "alphanum",
-                                    "allownull": true,
                                     "desc": "errorcode can be 1 (no access rights) or 2 (not enrolled or no permissions)",
                                     "required": 1,
-                                    "default": null
+                                    "default": null,
+                                    "allownull": true,
+                                    "type": "alphanum"
                                 },
                                 "message": {
                                     "class": "external_value",
-                                    "type": "text",
-                                    "allownull": true,
                                     "desc": "untranslated english message to explain the warning",
                                     "required": 1,
-                                    "default": null
+                                    "default": null,
+                                    "allownull": true,
+                                    "type": "raw"
                                 }
-                            },
-                            "desc": "warning",
-                            "required": 1,
-                            "default": null
-                        },
-                        "desc": "list of warnings",
-                        "required": 2,
-                        "default": null
+                            }
+                        }
                     }
-                },
-                "desc": "",
-                "required": 1,
-                "default": null
+                }
             },
             "description": "Returns the courses and assignments for the users capability",
             "type": "read",

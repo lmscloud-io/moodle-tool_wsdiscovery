@@ -75,8 +75,10 @@ final class helper_test extends \advanced_testcase {
      * Generate a web service, a token for the user and add one function to this web service
      *
      * @param \stdClass $user
+     * @param array|null $functions List of function names to add to the web service, by default
+     *                   ['core_course_get_contents', 'core_course_get_courses']
      */
-    protected function generate_web_service($user): void {
+    protected function generate_web_service($user, $functions = null): void {
         global $DB, $USER;
         // Set current user.
         $this->setAdminUser();
@@ -103,24 +105,33 @@ final class helper_test extends \advanced_testcase {
         $externaltoken->timecreated = time();
         $DB->insert_record('external_tokens', $externaltoken);
 
-        // Add two functions to the service that contain variety of parameter types.
-        $wsmethod = new \stdClass();
-        $wsmethod->externalserviceid = $externalserviceid;
-        $wsmethod->functionname = 'core_course_get_contents';
-        $DB->insert_record('external_services_functions', $wsmethod);
-
-        $wsmethod->functionname = 'core_course_get_courses';
-        $DB->insert_record('external_services_functions', $wsmethod);
+        // Add functions to the service that contain variety of parameter types.
+        $functions = $functions ?? [
+            'core_course_get_contents',
+            'core_course_get_courses',
+        ];
+        foreach ($functions as $function) {
+            $wsmethod = new \stdClass();
+            $wsmethod->externalserviceid = $externalserviceid;
+            $wsmethod->functionname = $function;
+            $DB->insert_record('external_services_functions', $wsmethod);
+        }
     }
 
     /**
      * Enables a webservice protocol
+     *
+     * @param string $name
      */
-    protected function enable_protocol() {
+    protected function enable_protocol($name = 'rest') {
         global $CFG;
-        set_config('webserviceprotocols', 'rest');
+        $protocols = preg_split('/,/', $CFG->webserviceprotocols ?? '', -1, PREG_SPLIT_NO_EMPTY);
+        if (!in_array($name, $protocols)) {
+            $protocols[] = $name;
+        }
+        set_config('webserviceprotocols', implode(',', $protocols));
         assign_capability(
-            'webservice/rest:use',
+            "webservice/{$name}:use",
             CAP_ALLOW,
             $CFG->defaultuserroleid,
             \context_system::instance()->id,
@@ -173,5 +184,29 @@ final class helper_test extends \advanced_testcase {
 
         $version = $helper->get_component_version('tool_wsdiscovery');
         $this->assertEquals((string)get_config('tool_wsdiscovery', 'version'), (string)$version);
+    }
+
+    public function test_example(): void {
+        global $CFG;
+
+        $this->resetAfterTest(true);
+        $user = $this->getDataGenerator()->create_user();
+        $functions = ['core_cohort_create_cohorts', 'core_get_string', 'mod_assign_get_assignments'];
+        $this->generate_web_service($user, $functions);
+        $this->enable_protocol('rest');
+        $this->enable_protocol('soap');
+
+        $helper = new helper_testing();
+        $helper->set_wstoken('testtoken');
+
+        ob_start();
+        $helper->output_content();
+        $output = ob_get_contents();
+        ob_end_clean();
+
+        $data = json_decode($output, true);
+
+        $example = file_get_contents($CFG->dirroot . '/admin/tool/wsdiscovery/examples/example.json');
+        $this->assertEquals($example, json_encode($data, JSON_PRETTY_PRINT));
     }
 }

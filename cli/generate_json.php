@@ -52,7 +52,7 @@ Options:
      --exclude=LIST        List of components to exclude (comma separated), if specified together with
                            the --include, applies after the include filter.
      --group-by-component  Groups the functions by component in the generated JSON and includes the component
-                           version (also treated as web service version in `core_webservice_get_site_info`).
+                           version (same as web service version in `core_webservice_get_site_info`).
 
 Unlike the web version, this CLI script does not take the web service token as argument and generates JSON
 for all exisisting web service functions, not only available for the current user.
@@ -60,10 +60,13 @@ for all exisisting web service functions, not only available for the current use
 Examples:
 
 To generate JSON for core and standard plugins and group by component:
-\$sudo -u www-data /usr/bin/phpadmin/tool/wsdiscovery/cli/generate_json.php --include=moodle,standard --group-by-component
+\$sudo -u www-data /usr/bin/php admin/tool/wsdiscovery/cli/generate_json.php --include=moodle,standard --group-by-component
 
 To include all non-standard plugins except for tool_idonotneed:
-\$sudo -u www-data /usr/bin/phpadmin/tool/wsdiscovery/cli/generate_json.php --include=addons --exclude=tool_idonotneed
+\$sudo -u www-data /usr/bin/php admin/tool/wsdiscovery/cli/generate_json.php --include=addons --exclude=tool_idonotneed
+
+For Moodle 5.1 and later, add "public/" to the path:
+\$sudo -u www-data /usr/bin/php public/admin/tool/wsdiscovery/cli/generate_json.php
 
 EOT;
 
