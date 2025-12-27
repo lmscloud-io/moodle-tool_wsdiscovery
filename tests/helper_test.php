@@ -189,6 +189,19 @@ final class helper_test extends \advanced_testcase {
     public function test_example(): void {
         global $CFG;
 
+        $branch = (int)$CFG->branch;
+        if ($branch >= 500) {
+            $filename = 'example.json';
+        } else if ($branch == 405) {
+            $filename = 'example_405.json';
+        } else if ($branch <= 401) {
+            $filename = 'example_401.json';
+        } else {
+            // Skip for 4.2-4.4, there are some minor differences.
+            $this->markTestSkipped('No example available for this Moodle version.');
+            return;
+        }
+
         $this->resetAfterTest(true);
         $user = $this->getDataGenerator()->create_user();
         $functions = ['core_cohort_create_cohorts', 'core_get_string', 'mod_assign_get_assignments'];
@@ -206,7 +219,7 @@ final class helper_test extends \advanced_testcase {
 
         $data = json_decode($output, true);
 
-        $example = file_get_contents($CFG->dirroot . '/admin/tool/wsdiscovery/examples/example.json');
+        $example = file_get_contents($CFG->dirroot . '/admin/tool/wsdiscovery/examples/' . $filename);
         $this->assertEquals($example, json_encode($data, JSON_PRETTY_PRINT));
     }
 }

@@ -33,6 +33,7 @@ class helper {
     protected function get_available_protocols($user) {
         $available = [];
         $allprotocols = array_keys(\core_component::get_plugin_list('webservice'));
+        sort($allprotocols);
         foreach ($allprotocols as $protocol) {
             if (
                 webservice_protocol_is_enabled($protocol) &&
