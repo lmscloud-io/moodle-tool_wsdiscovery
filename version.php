@@ -25,8 +25,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'tool_wsdiscovery';
-$plugin->release = '1.0';
-$plugin->version = 2025120300;
+$plugin->release = '1.0.1';
+$plugin->version = 2025122700;
 $plugin->requires = 2020061500;
 $plugin->supported = [39, 502];
 $plugin->maturity = MATURITY_STABLE;
