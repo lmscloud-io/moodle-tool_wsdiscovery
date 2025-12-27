@@ -147,7 +147,7 @@ final class helper_test extends \advanced_testcase {
         $this->assertFalse(in_array('tool_wsdiscovery', $standardplugins));
     }
 
-    public function test_get_functions(): void {
+    public function test_get_all_functions(): void {
         $helper = new helper();
         $functions1 = $helper->get_all_functions('', '');
         $this->assertGreaterThan(500, count($functions1));
@@ -164,6 +164,45 @@ final class helper_test extends \advanced_testcase {
         $functions5 = $helper->get_all_functions('core,mod_assign', '');
         $this->assertGreaterThan(100, count($functions5));
         $this->assertEquals(count($functions5), count($functions2) + count($functions4));
+    }
+
+    public function test_non_site_specific(): void {
+        // CLI output is not site-specific, it does not contain list of languages/themes.
+        $helper = new helper();
+        $functions = $helper->get_all_functions('moodle', '');
+        $function = array_filter($functions, function ($f) {
+            return $f['name'] === 'core_get_string';
+        });
+        $function = reset($function);
+        $langparam = $function['parameters_desc']['keys']['lang'];
+        $this->assertEquals('lang', $langparam['type']);
+        $this->assertFalse(array_key_exists('enum', $langparam));
+    }
+
+    public function test_site_specific(): void {
+        // Web service output is site-specific, it contains list of languages/themes.
+        $this->resetAfterTest(true);
+        $user = $this->getDataGenerator()->create_user();
+        $this->generate_web_service($user, ['core_get_string']);
+        $this->enable_protocol('rest');
+
+        $helper = new helper_testing();
+        $helper->set_wstoken('testtoken');
+
+        ob_start();
+        $helper->output_content();
+        $output = ob_get_contents();
+        ob_end_clean();
+
+        $data = json_decode($output, true);
+        $function = array_filter($data['functions'], function ($f) {
+            return $f['name'] === 'core_get_string';
+        });
+        $function = reset($function);
+        $langparam = $function['parameters_desc']['keys']['lang'];
+        $this->assertEquals('lang', $langparam['type']);
+        $this->assertTrue(array_key_exists('enum', $langparam));
+        $this->assertTrue(in_array('en', $langparam['enum']));
     }
 
     public function test_get_component_version(): void {

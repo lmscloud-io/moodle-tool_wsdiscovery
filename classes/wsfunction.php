@@ -30,6 +30,8 @@ class wsfunction {
     public $functionrecord;
     /** @var \stdClass web service function information (including the parameters/returns objects)  */
     public $function;
+    /** @var bool whether to include site-specific details (like list of languages, themes) */
+    public $sitespecific;
 
     /**
      * Constructor
@@ -37,9 +39,10 @@ class wsfunction {
      * @param \stdClass $functionrecord record from the database table external_functions
      * @throws \coding_exception
      */
-    public function __construct(\stdClass $functionrecord) {
+    public function __construct(\stdClass $functionrecord, bool $sitespecific = true) {
         global $CFG;
         $this->functionrecord = $functionrecord;
+        $this->sitespecific = $sitespecific;
         require_once($CFG->dirroot . '/lib/externallib.php');
         $this->function = \external_api::external_function_info($functionrecord);
     }
@@ -58,10 +61,10 @@ class wsfunction {
             // Avoid including current time as default value, it will be outdated after 1 second...
             $rv['default'] = 0;
         }
-        if ($value instanceof \external_value && $value->type == PARAM_LANG) {
+        if ($this->sitespecific && $value instanceof \external_value && $value->type == PARAM_LANG) {
             $rv['enum'] = array_keys(get_string_manager()->get_list_of_translations());
         }
-        if ($value instanceof \external_value && $value->type == PARAM_THEME) {
+        if ($this->sitespecific && $value instanceof \external_value && $value->type == PARAM_THEME) {
             $rv['enum'] = array_keys(\core_component::get_plugin_list('theme'));
         }
     }

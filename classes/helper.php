@@ -274,7 +274,7 @@ class helper {
         });
         $res = [];
         foreach ($records as $record) {
-            $res[] = (new wsfunction($record))->to_array();
+            $res[] = (new wsfunction($record, false))->to_array();
         }
         return $res;
     }
