@@ -76,7 +76,9 @@ class helper {
         $functions = $wsmanager->get_external_functions([$service->id => $service->id]);
         $res = [];
         foreach ($functions as $function) {
-            $res[] = (new wsfunction($function))->to_array();
+            $f = (new wsfunction($function))->to_array();
+            $f['version'] = $this->get_component_version($function->component);
+            $res[] = $f;
         }
         echo json_encode([
             'protocols' => $protocols,
@@ -189,6 +191,9 @@ class helper {
     /** @var string[]|null Cached list of standard plugins. */
     private $standardplugins = null;
 
+    /** @var array Cached component versions. */
+    private $componentversions = [];
+
     /**
      * Returns list of all standard plugins in the system.
      *
@@ -221,17 +226,25 @@ class helper {
      */
     public function get_component_version($component) {
         global $CFG;
+
+        if (array_key_exists($component, $this->componentversions)) {
+            return $this->componentversions[$component];
+        }
+
         if ($component == 'moodle' || $component == 'core') {
-            return (float)$CFG->version; // Moodle version.
+            $this->componentversions[$component] = (float)$CFG->version; // Moodle version.
         } else {
             $versionpath = \core_component::get_component_directory($component) . '/version.php';
             if (is_readable($versionpath)) {
                 $plugin = new \stdClass();
                 include($versionpath);
-                return $plugin->version;
+                $this->componentversions[$component] = $plugin->version;
+            } else {
+                $this->componentversions[$component] = null;
             }
         }
-        return null;
+
+        return $this->componentversions[$component];
     }
 
     /**
