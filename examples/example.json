@@ -223,7 +223,8 @@
             "description": "Creates new cohorts.",
             "type": "write",
             "loginrequired": true,
-            "readonlysession": false
+            "readonlysession": false,
+            "version": 2026010900
         },
         {
             "name": "core_get_string",
@@ -310,7 +311,8 @@
             "description": "Return a translated string - similar to core get_string(), call",
             "type": "read",
             "loginrequired": false,
-            "readonlysession": false
+            "readonlysession": false,
+            "version": 2026010900
         },
         {
             "name": "mod_assign_get_assignments",
@@ -1121,7 +1123,8 @@
             "description": "Returns the courses and assignments for the users capability",
             "type": "read",
             "loginrequired": true,
-            "readonlysession": false
+            "readonlysession": false,
+            "version": 2025100600
         }
     ]
 }
