@@ -261,8 +261,8 @@ final class helper_test extends \advanced_testcase {
         $example = file_get_contents($CFG->dirroot . '/admin/tool/wsdiscovery/examples/' . $filename);
         $data = json_encode($data, JSON_PRETTY_PRINT);
         // Normalize version numbers to 0 for comparison, they will always be different.
-        $example = preg_replace('/\n            "version": [\d\.]+\n/', '            "version": 0'."\n", $example);
-        $data = preg_replace('/\n            "version": [\d\.]+\n/', '            "version": 0'."\n", $data);
+        $example = preg_replace('/\n            "version": [\d\.]+\n/', '            "version": 0' . "\n", $example);
+        $data = preg_replace('/\n            "version": [\d\.]+\n/', '            "version": 0' . "\n", $data);
         $this->assertEquals($example, $data);
     }
 }
